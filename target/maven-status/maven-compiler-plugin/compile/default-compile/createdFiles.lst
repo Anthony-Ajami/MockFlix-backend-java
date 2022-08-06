@@ -1,0 +1,6 @@
+datamodel\Address.class
+datamodel\Contact.class
+datamodel\Movie.class
+datamodel\Role.class
+datamodel\SeenMovie.class
+datamodel\User.class
