@@ -1,12 +1,7 @@
 package en.mockflix.controllers;
 
-import en.mockflix.entities.Address;
-import en.mockflix.entities.Contact;
-import en.mockflix.entities.Role;
 import en.mockflix.entities.User;
 import en.mockflix.exceptions.UserNotFoundException;
-import en.mockflix.repositories.AddressRepository;
-import en.mockflix.repositories.ContactRepository;
 import en.mockflix.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,31 +12,14 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
-public class Controller {
+public class UserController {
 
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private ContactRepository contactRepository;
-
-    @Autowired
-    private AddressRepository addressRepository;
-
-
     @GetMapping("/users")
     public List<User> getAllUsers(){
         return userRepository.getAllUsers();
-    }
-
-    @GetMapping("/contacts")
-    public List<Contact> getAllContacts(){
-        return contactRepository.getAllContacts();
-    }
-
-    @GetMapping("/addresses")
-    public List<Address> getAllAddresses(){
-        return addressRepository.getAllAddresses();
     }
 
     @DeleteMapping("/user/{id}")
