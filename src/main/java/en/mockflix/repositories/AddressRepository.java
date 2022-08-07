@@ -1,15 +1,14 @@
 package en.mockflix.repositories;
 
-import en.mockflix.services.UserJPADAO;
+import en.mockflix.services.AddressJPADAO;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserRepository extends UserJPADAO {
+public class AddressRepository extends AddressJPADAO {
 
-    public UserRepository(SessionFactory sessionFactory) {
+    public AddressRepository(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 
 }
-

@@ -27,29 +27,25 @@ public class TestUserJPADAO {
                 UserJPADAO userJPADAO = new UserJPADAO(sf);
 
                 Contact contact = new Contact();
-                contact.setFirstName("Anthony");
-                contact.setLastName("Ajami");
+                contact.setFirstName("JOHN");
+                contact.setLastName("DOE");
                 contact.setEmail("anthony_ajami@hotmail.com");
                 contact.setPhoneNumber("0123456789");
 
                 Address address = new Address();
-                address.setCountry("France");
+                address.setCountry("LEBANON");
                 address.setArea("Ile de France");
                 address.setCity("Paris 13");
                 address.setStreet("rue Théroigne de Méricourt");
                 address.setNumber("4");
 
-                contact.setBillingAddress(address);
-
                 Role role = new Role();
-                role.setName("USER_BASIC");
+                role.setName("USER_PREMIUM");
 
                 User user = new User();
-                user.setUsername("anthonyajami");
+                user.setUsername("johndoe");
                 user.setPassword("password");
-                user.setContact(contact);
-                user.setRole(role);
 
-                userJPADAO.create(user);
+                userJPADAO.addUserFinal(user, contact, address, role);
         }
 }

@@ -3,6 +3,7 @@ package en.mockflix.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.inject.Named;
 import java.util.Properties;
@@ -34,5 +35,15 @@ public class Configuration {
         properties.setProperty("hibernate.show_sql","true");
         postgresSessionFactory.setHibernateProperties(properties);
         return postgresSessionFactory;
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("http://localhost:3000");
+            }
+        };
     }
 }
