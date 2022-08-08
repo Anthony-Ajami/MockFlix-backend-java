@@ -15,20 +15,20 @@ public class Movie {
     @Column(name = "TITLE")
     private String title;
 
-    @Column(name = "AUTHOR")
-    private String author;
-
     @Column(name = "GENRE")
     private String genre;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPTION", length = 1024)
     private String description;
 
     @Column(name = "BACKDROP_PATH")
     private String backdropPath;
 
+    @Column(name = "POSTER_PATH")
+    private String posterPath;
+
     @Column(name = "RELEASE_DATE")
-    private Date releaseDate;
+    private String releaseDate;
 
 
     public Long getId() {
@@ -45,14 +45,6 @@ public class Movie {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public String getGenre() {
@@ -79,22 +71,31 @@ public class Movie {
         this.backdropPath = backdropPath;
     }
 
-    public Date getReleaseDate() {
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
     @Override
     public String toString() {
         return "Movie{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", genre='" + genre + '\'' +
                 ", description='" + description + '\'' +
                 ", backdropPath='" + backdropPath + '\'' +
+                ", posterPath='" + posterPath + '\'' +
                 ", releaseDate=" + releaseDate +
                 '}';
     }

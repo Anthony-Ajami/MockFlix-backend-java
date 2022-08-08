@@ -22,18 +22,8 @@ public class UserController {
         return userRepository.getAllUsers();
     }
 
-    @DeleteMapping("/user/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable(value = "id") Long id) throws UserNotFoundException {
-        try {
-            User user = userRepository.getUserById(id);
-            userRepository.deleteUserById(id);
-            return ResponseEntity.ok().body(user);
-        } catch (Exception e) {
-            throw new UserNotFoundException("No user is found with id: " + id);
-        }
-    }
 
-    // add user with username and password
+    // register user with username and password
     @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*", methods = RequestMethod.POST, allowCredentials = "true", maxAge = 3600, exposedHeaders = "*")
     @PostMapping("/register")
     public User addUser(String username, String password){
