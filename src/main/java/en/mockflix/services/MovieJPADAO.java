@@ -1,6 +1,8 @@
 package en.mockflix.services;
 
 import en.mockflix.entities.Movie;
+import en.mockflix.entities.Role;
+import en.mockflix.entities.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,11 +18,33 @@ public class MovieJPADAO {
         this.factory = sessionFactory;
     }
 
+    public Movie getMovie(Long id) {
+        Session session = factory.openSession();
+        Query<Movie> query = session.createQuery("from Movie where id = :id");
+        query.setParameter("id", id);
+        Movie movie = query.uniqueResult();
+        session.close();
+        return movie;
+    }
+
     public void addMovie(Movie movie) {
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
         session.persist(movie);
         transaction.commit();
+    }
+
+    public Movie incrementViewCount(Long id) {
+        // get movie by id
+        Movie movie = getMovie(id);
+        movie.setViewCount(movie.getViewCount() + 1);
+
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(movie);
+        transaction.commit();
+        session.close();
+        return movie;
     }
 
     public List<Movie> getAllMovies() {
@@ -97,6 +121,17 @@ public class MovieJPADAO {
         Session session = getSession();
         Transaction tx = session.beginTransaction();
         Query query = session.createQuery("from Movie where genre = 'Trending'");
+        List<Movie> movies = query.list();
+        tx.commit();
+        session.close();
+        return movies;
+    }
+
+    public List<Movie> getAllTop10ViewedMovies() {
+        Session session = getSession();
+        Transaction tx = session.beginTransaction();
+        Query query = session.createQuery("from Movie order by viewCount desc");
+        query.setMaxResults(10);
         List<Movie> movies = query.list();
         tx.commit();
         session.close();

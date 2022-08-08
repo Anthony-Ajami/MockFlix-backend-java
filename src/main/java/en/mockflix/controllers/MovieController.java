@@ -24,6 +24,13 @@ public class MovieController {
         return movieRepository.getAllMovies();
     }
 
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping("/increment-view-count")
+    public Movie incrementViewCount(Long id){
+        return movieRepository.incrementViewCount(id);
+    }
+
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/movies/action")
     public List<Movie> getAllActionMovies(){
@@ -35,7 +42,6 @@ public class MovieController {
     public List<Movie> getAllComedyMovies(){
         return movieRepository.getAllComedyMovies();
     }
-
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/movies/documentary")
@@ -65,5 +71,11 @@ public class MovieController {
     @GetMapping("/movies/trending")
     public List<Movie> getAllTrendingMovies(){
         return movieRepository.getAllTrendingMovies();
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/movies/top-10-viewed")
+    public List<Movie> getAllTop10ViewedMovies(){
+        return movieRepository.getAllTop10ViewedMovies();
     }
 }

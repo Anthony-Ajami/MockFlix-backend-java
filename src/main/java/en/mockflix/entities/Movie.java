@@ -30,6 +30,17 @@ public class Movie {
     @Column(name = "RELEASE_DATE")
     private String releaseDate;
 
+    @Column(name= "VIEW_COUNT")
+    private Long viewCount;
+
+
+    public Long getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(Long viewCount) {
+        this.viewCount = viewCount;
+    }
 
     public Long getId() {
         return id;

@@ -77,6 +77,7 @@ public class FillDBWithMovies {
         movie1.setReleaseDate(release_date);
         movie1.setBackdropPath(backdrop_path);
         movie1.setGenre(genre);
+        movie1.setViewCount(Long.valueOf(0));
 
         MovieJPADAO movieJPADAO = new MovieJPADAO(sf);
         movieJPADAO.addMovie(movie1);
